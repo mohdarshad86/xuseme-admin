@@ -1,7 +1,7 @@
 import { Button, Image, Space, Table, Typography, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { getBanners, deleteBanner } from "../../API";
-import { CheckSquareFilled, CloseSquareFilled, DeleteColumnOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CheckSquareFilled, CloseSquareFilled, DeleteOutlined } from "@ant-design/icons";
 import AddBanner from "../../Components/Miscellaneous/AddBanner";
 const url = "https://xuseme.preciousresidency.com/";
 
@@ -72,18 +72,19 @@ function Banner() {
             dataIndex: "validity",
           },
           {
-            title: "Approved",
-            dataIndex: "isApproved",
-            render: (isApp) => {
-              return isApp ? <Tooltip title="Disapprove Banner">
-                <Button
-                  type="primary"
-                  style={{ background: "green" }}
-                  icon={<CloseSquareFilled />}
-                >
-                </Button>
-              </Tooltip> :
-                <>
+            title: "Actions",
+            dataIndex: "_id",
+            render: (id, data) => {
+              return <div>
+
+                {data.isApproved ? <Tooltip title="Disapprove Banner">
+                  <Button
+                    type="primary"
+                    style={{ background: "green" }}
+                    icon={<CloseSquareFilled />}
+                  >
+                  </Button>
+                </Tooltip> :
                   <Tooltip title="Approve Banner">
                     <Button
                       type="primary"
@@ -91,23 +92,17 @@ function Banner() {
                       icon={<CheckSquareFilled />}
                     >
                     </Button>
-                  </Tooltip>
-                </>
-            },
-          },
-          {
-            title: "Actions",
-            dataIndex: "_id",
-            render: (id) => {
-              return <Tooltip title="Delete Banner">
-                <Button
-                  type="primary"
-                  style={{ background: "red" }}
-                  icon={<DeleteOutlined />}
-                  onClick={() => handleDeleteBanner(id)}
-                >
-                </Button>
-              </Tooltip>
+                  </Tooltip>}
+                <Tooltip title="Delete Banner">
+                  <Button
+                    type="primary"
+                    style={{ background: "red" }}
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteBanner(data._id)}
+                  >
+                  </Button>
+                </Tooltip>
+              </div>
 
             },
           },

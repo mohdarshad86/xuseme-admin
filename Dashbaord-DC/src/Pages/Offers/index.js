@@ -21,9 +21,9 @@ function Offers() {
 
   }
 
-  const handleDelete=(id)=>{
+  // const handleDelete=(id)=>{
 
-  }
+  // }
 
   return (
     <Space size={20} direction="vertical">
@@ -34,6 +34,13 @@ function Offers() {
           {
             title: "Name (ID)",
             dataIndex: "partnerId",
+            render: (id, data) => {
+              return (
+                <Typography.Text style={{ wordWrap:"break-word"}} >
+                  {data.partnerId}
+                </Typography.Text>
+              );
+            },
           },
 
           {
@@ -46,6 +53,13 @@ function Offers() {
           {
             title: "Offer",
             dataIndex: "offer",
+            render: (id, data) => {
+              return (
+                <Typography.Text style={{ wordWrap:"break-word"}} >
+                  {data.offer}
+                </Typography.Text>
+              );
+            },
           },
           {
             title: "Transaction ID",

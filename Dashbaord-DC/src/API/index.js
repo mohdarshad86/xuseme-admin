@@ -42,6 +42,9 @@ export const getVendors = () => {
 export const getComments = () => {
   return fetch("https://dummyjson.com/comments").then((res) => res.json());
 };
+export const getNotification = () => {
+  return fetch("https://dummyjson.com/notifications").then((res) => res.json());
+};
 
 //offers
 export const getOffers = () => {

@@ -77,6 +77,13 @@ function Customers() {
           {
             title: "Email",
             dataIndex: "email",
+            render: (id, data) => {
+              return (
+                <Typography.Text style={{ wordWrap:"break-word"}} >
+                  {data.email}
+                </Typography.Text>
+              );
+            },
           },
           {
             title: "Phone",
@@ -88,9 +95,9 @@ function Customers() {
             dataIndex: ['state', 'area', 'name', 'shopType'],
             render: (id, address) => {
               return (
-                <span>
+                <Typography.Text style={{ wordWrap:"break-word"}} >
                   {address.name}({address.shopType}), {address.area}, {address.state}
-                </span>
+                </Typography.Text>
               );
             },
           },

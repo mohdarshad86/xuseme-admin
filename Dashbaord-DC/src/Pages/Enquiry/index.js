@@ -99,7 +99,7 @@ function Enquiries() {
                         title: "Actions",
                         dataIndex: "enquiry",
                         render: (enq) => {
-                          return <Tooltip title="Delete Banner">
+                          return <Tooltip title="Delete Enquiry">
                             <Button
                               type="primary"
                               style={{ background: "red" }}

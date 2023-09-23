@@ -64,7 +64,7 @@ const Login = () => {
         alert(`LogIn Successful`)
         localStorage.setItem("userInfo", JSON.stringify(response));
         navigate('/dashboard');
-        window.reload()
+        window.location.reload();
       } catch (error) {
         message.error("Error Occurred: " + error.response.data.message);
         setLoading(false);
@@ -131,7 +131,7 @@ const Login = () => {
           <Form.Item label="Phone" name="phone" rules={[{ required: true, message: "Please enter your phone number" }]}>
             <Input placeholder="Enter Your Phone" onChange={(e) => setPhone(e.target.value)} />
           </Form.Item>
-          <Form.Item>
+          <Form.Item className="loginButton">
             <Button type="primary" htmlType="button" onClick={handleSendOTP}>
               Send OTP
             </Button>
@@ -141,7 +141,7 @@ const Login = () => {
               <Form.Item label="Enter OTP:" name="otp" rules={[{ required: true, message: "Please enter your OTP" }]}>
                 <Input placeholder="Enter Your OTP here" onChange={(e) => setOtp(e.target.value)} />
               </Form.Item>
-              <Form.Item>
+              <Form.Item className="loginButton">
                 <Button type="primary" htmlType="button" onClick={handleVerifyOTP}>
                   Verify OTP
                 </Button>
@@ -160,7 +160,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Item>
-              <Form.Item>
+              <Form.Item className="loginButton">
                 <Button type="primary" htmlType="button" onClick={submitHandler} loading={loading}>
                   Login
                 </Button>

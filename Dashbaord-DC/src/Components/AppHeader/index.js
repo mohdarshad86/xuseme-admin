@@ -1,18 +1,23 @@
-import { BellFilled, MailOutlined } from "@ant-design/icons";
-import { Badge, Button, Drawer, Image, List, Space, Typography } from "antd";
+import { BellFilled, MailOutlined, MenuOutlined } from "@ant-design/icons";
+import { Badge, Button, Drawer, List, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getComments } from "../../API";
+import { getComments, getNotification } from "../../API";
 import { useNavigate } from "react-router-dom";
 
 function AppHeader() {
   const [comments, setComments] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
     getComments().then((res) => {
       setComments(res.comments);
+    });
+    getNotification().then((res) => {
+      setNotifications(res.notifications);
     });
   }, []);
 
@@ -21,13 +26,18 @@ function AppHeader() {
     navigate('/')
   }
 
+  const handleMenu = () => {
+    setMenuVisible(!menuVisible);
+    console.log(menuVisible); // Toggle menu visibility
+  }
+
   return (
     <div className="AppHeader">
-      <Image
-        width={40}
-        src="https://yt3.ggpht.com/ytc/AMLnZu83ghQ28n1SqADR-RbI2BGYTrqqThAtJbfv9jcq=s176-c-k-c0x00ffffff-no-rj"
+      <MenuOutlined
+      className="mobile-menu-icon"
+        onClick={handleMenu}
       />
-      <Typography.Title>Admin Panel</Typography.Title>
+      <Typography.Title style={{ fontSize: "38px" }}>Admin Panel</Typography.Title>
       <Space>
         <Button
           type="primary"
@@ -43,7 +53,7 @@ function AppHeader() {
             }}
           />
         </Badge>
-        <Badge count={7}>
+        <Badge count={comments.length}>
           <BellFilled
             style={{ fontSize: 24 }}
             onClick={() => {
@@ -76,7 +86,7 @@ function AppHeader() {
         maskClosable
       >
         <List
-          dataSource={null}
+          dataSource={notifications}
           renderItem={(item) => {
             return (
               <List.Item>

@@ -7,6 +7,7 @@ import {
 import { Card, Space, Statistic, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getCustomers, getEnquiries, } from "../../API";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [enquiry, setEnquiry] = useState(0);
@@ -26,67 +27,80 @@ function Dashboard() {
   return (
     <Space size={20} direction="vertical">
       <Typography.Title level={4}>Dashboard</Typography.Title>
-      <Space direction="horizontal">
-        <DashboardCard
-          icon={
-            <UserOutlined
-              style={{
-                color: "purple",
-                backgroundColor: "rgba(0,255,255,0.25)",
-                borderRadius: 20,
-                fontSize: 24,
-                padding: 8,
-              }}
+      <Space direction="vertical">
+        <Space>
+          <Link to='/customers'>
+            <DashboardCard
+              style={{ width: '200px', margin: '10px' }}
+              icon={
+                <UserOutlined
+                  style={{
+                    color: "purple",
+                    backgroundColor: "rgba(0,255,255,0.25)",
+                    borderRadius: 20,
+                    fontSize: 24,
+                    padding: 8,
+                  }}
+                />
+              }
+              title={"Customers"}
+              value={customers}
             />
-          }
-          title={"Customers"}
-          value={customers}
-        />
-        <DashboardCard
-          icon={
-            <PhoneOutlined
-              style={{
-                color: "blue",
-                backgroundColor: "rgba(0,0,255,0.25)",
-                borderRadius: 20,
-                fontSize: 24,
-                padding: 8,
-              }}
+          </Link>
+          <Link to='/enquiry'>
+            <DashboardCard
+              icon={
+                <PhoneOutlined
+                  style={{
+                    color: "blue",
+                    backgroundColor: "rgba(0,0,255,0.25)",
+                    borderRadius: 20,
+                    fontSize: 24,
+                    padding: 8,
+                  }}
+                />
+              }
+              title={"Enquiry"}
+              value={enquiry}
             />
-          }
-          title={"Enquiry"}
-          value={enquiry}
-        />
-        <DashboardCard
-          icon={
-            <FileImageOutlined
-              style={{
-                color: "red",
-                backgroundColor: "rgba(255,0,0,0.25)",
-                borderRadius: 20,
-                fontSize: 24,
-                padding: 8,
-              }}
+          </Link>
+        </Space>
+        <Space>
+          <Link to='/banners'>
+            <DashboardCard
+              icon={
+                <FileImageOutlined
+                  style={{
+                    color: "red",
+                    backgroundColor: "rgba(255,0,0,0.25)",
+                    borderRadius: 20,
+                    fontSize: 24,
+                    padding: 8,
+                  }}
+                />
+              }
+              title={"Banners"}
+              value={banners}
             />
-          }
-          title={"Banners"}
-          value={banners}
-        />
-        <DashboardCard
-          icon={
-            <MessageTwoTone
-              style={{
-                color: "red",
-                backgroundColor: "rgba(255,0,0,0.25)",
-                borderRadius: 20,
-                fontSize: 24,
-                padding: 8,
-              }}
+          </Link>
+          <Link to='/help'>
+            <DashboardCard
+              icon={
+                <MessageTwoTone
+                  style={{
+                    color: "red",
+                    backgroundColor: "rgba(255,0,0,0.25)",
+                    borderRadius: 20,
+                    fontSize: 24,
+                    padding: 8,
+                  }}
+                />
+              }
+              title={"Complaints"}
+              value={banners}
             />
-          }
-          title={"Complaints"}
-          value={banners}
-        />
+          </Link>
+        </Space>
       </Space>
       <Space>
         <Recentenquiry />
@@ -97,7 +111,7 @@ function Dashboard() {
 
 function DashboardCard({ title, value, icon }) {
   return (
-    <Card>
+    <Card style={{ display: "flex" }}>
 
       {/* <Button ghost borderColor="none"> */}
       <Space direction="horizontal">
@@ -147,7 +161,7 @@ function Recentenquiry() {
               return <p >{info.type}</p>
             },
           },
-          
+
         ]}
         loading={loading}
         dataSource={dataSource}

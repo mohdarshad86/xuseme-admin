@@ -44,8 +44,6 @@ function Category() {
       <Table
         loading={loading}
         columns={[
-
-
           {
             title: "Title",
             dataIndex: "title",
@@ -53,6 +51,13 @@ function Category() {
           {
             title: "SubTitle",
             dataIndex: "subTitle",
+            render: (id, data) => {
+              return (
+                <Typography.Text style={{ wordWrap:"break-word"}} >
+                  {data.subTitle}
+                </Typography.Text>
+              );
+            },
           },
           {
             title: "Image",

@@ -28,6 +28,11 @@
     margin-top: 24px;
 }
 
+.loginButton{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .AppFooter {
     height: 50px;
     display: flex;
@@ -52,4 +57,40 @@
 
 .SideMenuVertical {
     height: 100%;
+}
+
+/*
+Responsive design
+*/
+
+.mobile-menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 16px
+}
+
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .AppHeader {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        text-align: center;
+        /* padding: 10px; */
+        font-size: 20px;
+    }
+
+    .mobile-menu-icon {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-icon {
+        display: none;
+        /* Hide the icon on larger screens */
+    }
 }
